@@ -79,9 +79,6 @@ commands:
               $HOME/.new_local/bin/jhbuild bootstrap-gtk-osx-gimp
               cat ~/.profile
 
-  get-cached-data:
-    steps:
-
 # -------------------------
 #        JOBS
 # -------------------------
