@@ -195,7 +195,7 @@ jobs:
               security list-keychains  -s "${HOME}/Library/Keychains/signchain-db" "${HOME}/Library/Keychains/login.keychain-db"
               security import apple.cer -k signchain  -T /usr/bin/codesign
               security import gnome.pfx  -k signchain -P "$osx_crt_pw" -T /usr/bin/codesign
-              security set-key-partition-list -S apple-tool:,apple: -k "" signchain
+              security set-key-partition-list -S apple-tool:,apple: -s -k "" signchain
               rm -rf ${HOME}/codesign
               exit 0
         - run:
@@ -211,8 +211,6 @@ jobs:
               # sudo sqlite3 "/Users/distiller/Library/Application Support/com.apple.TCC/TCC.db" "$tcc_service_appleevents"
 
               # run script
-              echo "whoami:"
-              whoami
               jhbuild run ./build299.sh debug
         - run:
             name:  Notarizing DMG package
