@@ -155,28 +155,28 @@ jobs:
     resource_class: gnome/gimp
 
     steps:
-        - setup
-        - build-env
-        - run:
-            name: Build GIMP
-            # XXX `make check` is not working reliably under circle ci, so we are
-            # not using --check flag
-            command: |
-              source ~/.profile
-              jhbuild build gimp299
-        # - run:
-        #     name: Building GIMP help (en) from git
-        #     command: source ~/.profile && ALL_LINGUAS=en jhbuild build gimp-help-git
-        # - run:
-        #     name: Cleanup
-        #     command: find  ~/gtk/source -type d -mindepth 1 -maxdepth 1 | xargs -I% rm -rf %/*
+      - setup
+      - build-env
+      - run:
+          name: Build GIMP
+          # XXX `make check` is not working reliably under circle ci, so we are
+          # not using --check flag
+          command: |
+            source ~/.profile
+            jhbuild build gimp299
+      # - run:
+      #     name: Building GIMP help (en) from git
+      #     command: source ~/.profile && ALL_LINGUAS=en jhbuild build gimp-help-git
+      # - run:
+      #     name: Cleanup
+      #     command: find  ~/gtk/source -type d -mindepth 1 -maxdepth 1 | xargs -I% rm -rf %/*
       - persist_to_workspace:
-        # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
-        # taken to be the root directory of the workspace.
-        root: ~/gtk
-        # Must be relative path from root
-        paths:
-          - inst
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+          # taken to be the root directory of the workspace.
+          root: ~/gtk
+          # Must be relative path from root
+          paths:
+            - inst
 
   package-gimp-2-99:
     macos:
